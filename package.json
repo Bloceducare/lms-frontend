@@ -6,9 +6,23 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
+    "@next/font": "^13.1.1",
+    "@reduxjs/toolkit": "^1.9.1",
+    "axios": "^1.2.2",
+    "flowbite": "^1.6.0",
+    "flowbite-react": "^0.3.7",
     "next": "latest",
+    "next-themes": "^0.2.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.41.0",
+    "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5",
+    "react-toastify": "^9.1.1",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "18.11.3",

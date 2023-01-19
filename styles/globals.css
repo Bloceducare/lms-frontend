@@ -1,3 +1,97 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap');
+
+
+
+:root {
+    /*default theme */
+    --background: white;
+    --foreground: #0A033C;
+  }
+  
+  [data-theme='dark'] {
+    --background: #0A033C;
+    --foreground: white;
+  }
+
+
+  body {
+    font-family: 'Fira Sans', sans-serif;
+  }
+
+
+  .bg-card-purple{
+    opacity: 0.9;
+    background: linear-gradient(72.14deg, rgba(244, 6, 172, 0.445) -36.46%, rgba(255, 124, 215, 0.405) 95.27%);
+  }
+  .bg-card-orange{
+    opacity: 0.9;
+    background: linear-gradient(67.58deg, rgba(255, 182, 25, 0.3) -4.91%, rgba(255, 182, 25, 0.3) 97.8%);
+  }
+  .bg-card-blue{
+    opacity: 0.9;
+    background: linear-gradient(324.74deg, rgba(0, 210, 161, 0.3) 11.82%, rgba(0, 210, 161, 0.3) 90.84%);
+  }
+
+  .bg-card-main{
+    opacity: 0.9;
+    background: #F7F5FA;
+    box-shadow: 13.0709px 13.0709px 104.567px rgba(63, 39, 102, 0.1);
+  }
+  
+
+
+  .im-test{
+    top: -20%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+  }
+
+
+
+
+  .circular-chart {
+    max-width: 7.5rem;
+    height: 100%;
+    /* transform: scale(0.5); */
+    /* margin: auto; */
+ 
+  }
+  
+  .circle-bg {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2;
+  }
+  
+  .circle {
+    fill: none;
+    stroke: #00D2A1;
+    stroke-width: 2;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+  }
+  
+  .percentage {
+    font-size: 0.6rem;
+    text-anchor: middle;
+  }
+
+
+  .svg-record{
+    top: -0%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+  }
+
+  .box-one {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  
+  
