@@ -2,7 +2,7 @@ import { useState } from "react";
 import Plus from "@components/icons/Plus";
 import AddTopicsModal from "@views/dashboard/curriculum/AddTopicsModal";
 import DashboardLayout from "@layout/dashboard";
-import NoSSR from "react-no-ssr";
+import NoSSR from "@components/NoSSR";
 
 const Topics = () => {
   const [show, setShow] = useState(false);

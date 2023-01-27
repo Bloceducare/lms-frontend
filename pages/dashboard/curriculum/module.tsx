@@ -2,7 +2,7 @@ import { useState } from "react";
 import Plus from "@components/icons/Plus";
 import DashboardLayout from "@layout/dashboard";
 import AddModulesModal from "@views/dashboard/curriculum/AddModulesModal";
-import NoSSR from "react-no-ssr";
+import NoSSR from "@components/NoSSR";
 
 const Module = () => {
   const [show, setShow] = useState(false);

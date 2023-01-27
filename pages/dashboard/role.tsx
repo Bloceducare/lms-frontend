@@ -3,7 +3,7 @@ import Plus from "@components/icons/Plus";
 import AddRoleModal from "@views/dashboard/AddRoleModal";
 import DashboardLayout from "@layout/dashboard";
 import { useGetUsersQuery } from "@services/api";
-import NoSSR from "react-no-ssr";
+import NoSSR from "@components/NoSSR";
 
 const TableHeader = ["User", "Role", "Track", "Cohort"];
 

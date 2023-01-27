@@ -7,7 +7,7 @@ import Loader from "@components/Loader";
 import TrashIcon from "@components/icons/Trash";
 import View from "@components/icons/View";
 import Edit from "@components/icons/Edit";
-import NoSSR from "react-no-ssr";
+import NoSSR from "@components/NoSSR";
 
 const MentorResources = () => {
   const [show, setShow] = useState(false);

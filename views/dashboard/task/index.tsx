@@ -2,7 +2,7 @@ import { useState } from "react";
 import Plus from "@components/icons/Plus";
 import Loader from "@components/Loader";
 import { useGetTasksQuery } from "@services/api";
-import NoSSR from "react-no-ssr";
+import NoSSR from "@components/NoSSR";
 
 import AddTaskViewsModal from "./AddTasksModal";
 

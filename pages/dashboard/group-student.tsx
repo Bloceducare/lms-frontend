@@ -4,7 +4,7 @@ import { useGetGroupsQuery } from "@services/api";
 import AddGroupModal from "@views/dashboard/AddGroupModal";
 import DashboardLayout from "@layout/dashboard";
 import { useState } from "react";
-import NoSSR from "react-no-ssr";
+import NoSSR from "@components/NoSSR";
 
 const GroupStudent = () => {
   const [show, setShow] = useState(false);

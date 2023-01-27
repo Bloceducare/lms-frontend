@@ -6,7 +6,7 @@ import Loader from "@components/Loader";
 import Trash from "@components/icons/Trash";
 import Edit from "@components/icons/Edit";
 import View from "@components/icons/View";
-import NoSSR from "react-no-ssr";
+import NoSSR from "@components/NoSSR";
 
 const TableHeader = [];
 
