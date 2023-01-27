@@ -19,6 +19,7 @@
     "paths": {
       "@views/*": ["views/*"],
       "@components/*": ["components/*"],
+      "@layout/*": ["layout/*"],
       "@utils/*": ["utils/*"],
       "@services/*": ["services/*"],
       "@state/*": ["state/*"],

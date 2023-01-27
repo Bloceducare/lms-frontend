@@ -1,5 +1,5 @@
 import { useGetCurriculumQuery } from "@services/api";
-import DashboardLayout from "layout/dashboard";
+import DashboardLayout from "@layout/dashboard";
 import { useState } from "react";
 
 const Curriculum = () => {

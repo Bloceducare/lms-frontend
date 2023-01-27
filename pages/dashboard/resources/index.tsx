@@ -1,5 +1,5 @@
 import ResourcesView from "@views/dashboard/resources";
-import DashboardLayout from "layout/dashboard";
+import DashboardLayout from "@layout/dashboard";
 
 const Resources = () => {
   return (

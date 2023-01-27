@@ -7,6 +7,7 @@ import Loader from "@components/Loader";
 import TrashIcon from "@components/icons/Trash";
 import View from "@components/icons/View";
 import Edit from "@components/icons/Edit";
+import NoSSR from "react-no-ssr";
 
 const MentorResources = () => {
   const [show, setShow] = useState(false);
@@ -21,7 +22,9 @@ const MentorResources = () => {
 
   return (
     <>
-      <AddResourcesModal setShow={setShow} show={show} />
+      <NoSSR>
+        <AddResourcesModal setShow={setShow} show={show} />
+      </NoSSR>
       <div className="flex justify-between my-6">
         <div>Resources</div>
         <div>

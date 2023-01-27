@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import DashboardLayout from "layout/dashboard";
+import DashboardLayout from "@layout/dashboard";
 import YoutubeEmbed from "@components/YoutubeEmbed";
 
 const Recording = () => {

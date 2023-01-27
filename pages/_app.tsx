@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "../store";
 import Footer from "@components/footer";
 import SiteWrapper from "@components/siteWrapper";
-import DashboardLayout from "layout/dashboard";
+import DashboardLayout from "@layout/dashboard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

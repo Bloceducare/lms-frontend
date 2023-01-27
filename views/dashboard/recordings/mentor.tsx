@@ -6,6 +6,7 @@ import Loader from "@components/Loader";
 import Trash from "@components/icons/Trash";
 import Edit from "@components/icons/Edit";
 import View from "@components/icons/View";
+import NoSSR from "react-no-ssr";
 
 const TableHeader = [];
 
@@ -14,7 +15,9 @@ const MentorRecordings = () => {
   const { data, isLoading, isError, refetch } = useGetRecordingsQuery(90);
   return (
     <>
-      <AddRecordings show={show} setShow={setShow} />
+      <NoSSR>
+        <AddRecordings show={show} setShow={setShow} />
+      </NoSSR>
       <div className="flex justify-between items-center my-6">
         <div>Recordings</div>
         <div>

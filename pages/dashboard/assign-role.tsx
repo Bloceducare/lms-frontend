@@ -1,4 +1,4 @@
-import DashboardLayout from "layout/dashboard";
+import DashboardLayout from "@layout/dashboard";
 
 const AssignRole = () => {
   return <>Assign Role</>;

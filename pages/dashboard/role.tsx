@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Plus from "@components/icons/Plus";
 import AddRoleModal from "@views/dashboard/AddRoleModal";
-import DashboardLayout from "layout/dashboard";
+import DashboardLayout from "@layout/dashboard";
 import { useGetUsersQuery } from "@services/api";
+import NoSSR from "react-no-ssr";
 
 const TableHeader = ["User", "Role", "Track", "Cohort"];
 
@@ -16,7 +17,9 @@ const Role = () => {
 
   return (
     <>
-      <AddRoleModal setShow={setShow} show={show} />
+      <NoSSR>
+        <AddRoleModal setShow={setShow} show={show} />
+      </NoSSR>
       <div className="flex justify-between mb-6">
         <div>Available Roles</div>
         <div>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Plus from "@components/icons/Plus";
 import Loader from "@components/Loader";
 import { useGetTasksQuery } from "@services/api";
+import NoSSR from "react-no-ssr";
 
 import AddTaskViewsModal from "./AddTasksModal";
 
@@ -29,7 +30,9 @@ const TaskView = () => {
   const [show, setShow] = useState(false);
   return (
     <>
-      <AddTaskViewsModal show={show} setShow={setShow} />
+      <NoSSR>
+        <AddTaskViewsModal show={show} setShow={setShow} />
+      </NoSSR>
       <div className="flex justify-between my-6">
         <div>Tasks </div>
         <div>

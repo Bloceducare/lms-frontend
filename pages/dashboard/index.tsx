@@ -1,5 +1,5 @@
 import DashboardView from "@views/dashboard";
-import DashboardLayout from "layout/dashboard";
+import DashboardLayout from "@layout/dashboard";
 
 const Dashboard = () => {
   return (

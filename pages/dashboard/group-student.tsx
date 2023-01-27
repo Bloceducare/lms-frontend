@@ -2,8 +2,9 @@ import Button from "@components/commons/button";
 import Plus from "@components/icons/Plus";
 import { useGetGroupsQuery } from "@services/api";
 import AddGroupModal from "@views/dashboard/AddGroupModal";
-import DashboardLayout from "layout/dashboard";
+import DashboardLayout from "@layout/dashboard";
 import { useState } from "react";
+import NoSSR from "react-no-ssr";
 
 const GroupStudent = () => {
   const [show, setShow] = useState(false);
@@ -15,7 +16,9 @@ const GroupStudent = () => {
 
   return (
     <>
-      <AddGroupModal setShow={setShow} show={show} />
+      <NoSSR>
+        <AddGroupModal setShow={setShow} show={show} />
+      </NoSSR>
       <div className="flex justify-between mb-6">
         <div>Groups</div>
         <div>
