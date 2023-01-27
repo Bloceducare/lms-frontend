@@ -2,7 +2,6 @@ import Play from "@components/icons/Play";
 import Loader from "@components/Loader";
 import { useGetRecordingsQuery } from "@services/api";
 import Link from "next/link";
-import ReactPlayer from "react-player/youtube";
 import { useRouter } from "next/router";
 import YoutubeEmbed from "@components/YoutubeEmbed";
 
@@ -20,11 +19,6 @@ const StudentRecordings = () => {
     <>
       <div className="mx-auto border">
         <YoutubeEmbed embedId={"ysz5S6PUM-U"} />
-        {/* <ReactPlayer
-          url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-          width="100%"
-          height="25rem"
-        /> */}
       </div>
 
       <div className="mt-6">
