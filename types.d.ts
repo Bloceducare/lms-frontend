@@ -36,6 +36,34 @@ export interface IElementProps {
     token: string;
     userId: string;
   }
+
+
+  export interface IUser {
+
+    active:number
+    cohort_id:number
+    country_id:number
+    created_at
+:string
+email:string
+email_verified:string
+firstname:string
+group_id:string | null
+lastname:string
+reference:string
+resident_address:string | null
+role:string
+track_id:number
+updated_at:string
+wallet_address:string | null
+
+
+  }
+  export interface ILoginResponse {   
+      token:string
+    user:IUser   
+
+  }
   
 
   

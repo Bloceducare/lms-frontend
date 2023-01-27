@@ -1,3 +1,4 @@
+import useUser from "@views/auth/state/hooks/useUser";
 import { percentValue } from "utils";
 import CircularProgressBar from "./circularProgress";
 import ProgressBar from "./progressBar";
@@ -68,7 +69,7 @@ const StudentDash = () => {
   };
 
   const pick = pickItem(colorArray);
-
+  const user = useUser();
   return (
     <>
       <div className="container mx-auto ">
@@ -105,7 +106,9 @@ const StudentDash = () => {
               alt="avatar"
             />
             <div>
-              <p>Annie Daniel</p>
+              <p className="mt-3 text-sm">
+                {user?.firstname} {user?.lastname}
+              </p>
               <small>Cohort 8</small>
             </div>
             <div className="flex justify-between ">

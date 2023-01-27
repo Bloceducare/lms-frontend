@@ -1,81 +1,131 @@
-import { Sidebar, Badge } from "flowbite-react";
-import {
-  HiChartPie,
-  HiViewBoards,
-  HiInbox,
-  HiUser,
-  HiShoppingBag,
-  HiArrowSmRight,
-  HiTable,
-} from "react-icons/hi";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import Link from "next/link";
+import { dashRoutes } from "config/routes";
+import { useRouter } from "next/router";
+import { IRouteLink } from "interface";
+import AngleUp from "@components/icons/AngleUp";
+import { AppState } from "store";
+import { useLogoutUserMutation } from "@services/api";
+import { logoutUser } from "@views/auth/state";
+import Logout from "@components/icons/Logout";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="flex bg-light-bg ">
-      <div className="w-fit">
-        <Sidebar aria-label="Sidebar with call to action button example">
-          <Sidebar.Items>
-            <Sidebar.ItemGroup>
-              <Sidebar.Item href="#" icon={HiChartPie}>
-                Dashboard
-              </Sidebar.Item>
-              <Sidebar.Item href="#" icon={HiViewBoards}>
-                Kanban
-              </Sidebar.Item>
-              <Sidebar.Item href="#" icon={HiInbox}>
-                Inbox
-              </Sidebar.Item>
-              <Sidebar.Item href="#" icon={HiUser}>
-                Users
-              </Sidebar.Item>
-              <Sidebar.Item href="#" icon={HiShoppingBag}>
-                Products
-              </Sidebar.Item>
-              <Sidebar.Item href="#" icon={HiArrowSmRight}>
-                Sign In
-              </Sidebar.Item>
-              <Sidebar.Item href="#" icon={HiTable}>
-                Sign Up
-              </Sidebar.Item>
-            </Sidebar.ItemGroup>
-          </Sidebar.Items>
-          <Sidebar.CTA>
-            <div className="flex items-center mb-3">
-              <Badge color="warning">Beta</Badge>
-              <button
-                aria-label="Close"
-                className="-m-1.5 ml-auto inline-flex h-6 w-6 rounded-lg bg-blue-50 p-1 text-blue-900 hover:bg-blue-200 focus:ring-2 focus:ring-blue-400 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800"
-                type="button"
-              >
-                <svg
-                  aria-hidden={true}
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
+const RouteLink = ({ ...item }: IRouteLink) => {
+  const router = useRouter();
+  const Icon = item.icon;
+  const [isExpanded, toggleExpanded] = useState(false);
+  const currentLink = router?.pathname;
+
+  if (typeof item.route == "string") {
+    return (
+      <>
+        <Link
+          href={item.route}
+          className={`${
+            currentLink == item.route ? "bg-white/50" : ""
+          } rounded-l-xl hover:bg-white/30 my-2`}
+        >
+          <div
+            className="flex items-center justify-start w-48 p-4 cursor-pointer "
+            key={item.id}
+          >
+            <div className="mr-4">
+              <Icon />
             </div>
-            <p className="mb-3 text-sm text-blue-900 dark:text-blue-400">
-              Preview the new Flowbite dashboard navigation! You can turn the
-              new navigation off for a limited time in your profile.
-            </p>
-            <a
-              className="text-sm text-blue-900 underline hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-              href="#"
-            >
-              Turn new navigation off
-            </a>
-          </Sidebar.CTA>
-        </Sidebar>
+            <div>{item.title}</div>
+          </div>
+        </Link>
+      </>
+    );
+  }
+
+  return (
+    <>
+      {
+        <button
+          key={item.id}
+          onClick={() => toggleExpanded((state) => !state)}
+          className={`text-white rounded-l-xl hover:bg-white/30 my-2`}
+        >
+          <Link href={item.link as string}>
+            <div className="flex items-center justify-start w-48 p-4 cursor-pointer ">
+              <div className="mr-4">
+                <Icon />
+              </div>
+              <div>{item.title}</div>
+              <div>
+                <AngleUp className={`ml-6 ${isExpanded ? "" : "rotate-180"}`} />
+              </div>
+            </div>
+          </Link>
+        </button>
+      }
+
+      {isExpanded && item.route
+        ? item.route.map((i) => {
+            return (
+              <div className="ml-10  transform translate-x-4" key={i.id}>
+                <RouteLink {...i} />
+              </div>
+            );
+          })
+        : null}
+    </>
+  );
+};
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const roleType = useSelector(
+    (state: AppState) => state.userReducer?.user?.user?.role
+  );
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const currentRoute = dashRoutes?.[roleType];
+  const [logoutMutation] = useLogoutUserMutation();
+
+  const logout = async () => {
+    await logoutMutation();
+    router.push("/auth");
+    dispatch(logoutUser());
+  };
+  return (
+    <div className="bg-[#F7F5FA]/80">
+      <div className="grid grid-cols-12 ">
+        <div className="py-2 col-span-3 dash-bg max-w-[17rem]">
+          <div className="flex flex-col items-end p-3 pl-4 pr-0">
+            <div className="flex items-start w-48 mb-12">
+              <img src="/avatar.svg" alt="profile" className="w-1/5" />
+            </div>
+            {currentRoute
+              ? currentRoute.map((item) => {
+                  return <RouteLink {...item} />;
+                })
+              : null}
+            <div className="  w-3/4  ">
+              <hr className="bg-grey-6/40  border-0 h-[0.2rem] w-3/4 my-10"></hr>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <button onClick={logout} className="flex items-center text-white">
+              <Logout className="mr-2" />
+              Logout
+            </button>
+          </div>
+
+          <div>
+            <div className="text-white p-3 flex justify-center flex-col mt-6 bg-white/20 mx-4 rounded-3xl">
+              <div className="text-center font-bold my-3 text-xl mb-5">
+                Settings
+              </div>
+              <div className="">
+                There is no end in learning.A lot of efforts are needed for
+                final achievement.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-span-9 p-12 pt-3">{children}</div>
       </div>
-      <div className="w-full p-4">{children}</div>
     </div>
   );
 };

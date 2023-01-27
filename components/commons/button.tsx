@@ -1,10 +1,10 @@
-import { IChild } from "config/inteface";
+import { IChild } from "interface";
 
 interface IButton extends IChild {
   type?: "button" | "submit";
   className?: string;
   onClick?: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 const Button = ({

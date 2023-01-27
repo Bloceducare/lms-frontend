@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SiteWrapper from "@components/siteWrapper";
-import { IChild } from "config/inteface";
+import { IChild } from "interface";
 
 const AuthWrapper = ({ children }: IChild) => {
   return (

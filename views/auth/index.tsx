@@ -1,7 +1,10 @@
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { useForm, Controller } from "react-hook-form";
-import axios from "axios";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { loginSchema, validationOpt } from "schema";
+import { ILoginResponse } from "types";
+import { loginUser as loginUserAction } from "@views/auth/state";
 
 import Input from "@components/commons/input";
 import Button from "@components/commons/button";
@@ -12,9 +15,12 @@ import { baseUrl } from "config/constants";
 const validationOption = validationOpt(loginSchema);
 
 const Login = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
-  const [loginUserMutation, { isLoading, isSuccess, isError, data, status }] =
-    useLoginUserMutation();
+  const [loginUserMutation, { status, data }] = useLoginUserMutation({
+    fixedCacheKey: "user-one",
+  });
+
   const {
     register,
     handleSubmit,
@@ -22,36 +28,30 @@ const Login = () => {
     // @ts-ignore
   } = useForm<any>(validationOption);
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   const loginUser = async (value: any) => {
-    console.log(value, "valuee");
-    router.push("/dashboard");
-    // const res = await loginUserMutation(value);
-    // console.log(res, "ress");
+    setErrorMsg("");
 
-    // const send = await axios({
-    //   url: `https://web3bridgelms.herokuapp.com/api/login`,
-    //   data: value,
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "X-CSRF-Token": "{{ csrf_token() }}",
-    //   },
-    // });
-
-    const send2 = await fetch("https://web3bridgelms.herokuapp.com/api/login", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(value),
-    });
-
-    // console.log(send2, "send request");
+    try {
+      const resp = await loginUserMutation(value).unwrap();
+      dispatch(loginUserAction(resp));
+      router.push("/dashboard");
+    } catch (e: any) {
+      const error = e.data.message;
+      console.log(e, "error");
+      setErrorMsg(error);
+    }
   };
 
   return (
     <>
       <AuthWrapper>
         <form className="" onSubmit={handleSubmit(loginUser)}>
-          <div className="">
+          <div className="relative">
+            <div className="absolute text-center text-red-600 capitalize transform -translate-x-1/2 -top-8 left-1/2">
+              {errorMsg}
+            </div>
             <div>
               <Input
                 errors={errors}
@@ -77,7 +77,7 @@ const Login = () => {
                 type="submit"
                 className="w-full text-white uppercase border-0 bg-brand-red-one "
               >
-                SignIn
+                {isSubmitting ? "Loading" : " SignIn"}
               </Button>
             </div>
             <div className="flex items-center justify-between">

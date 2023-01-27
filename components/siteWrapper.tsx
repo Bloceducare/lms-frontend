@@ -1,4 +1,4 @@
-import { IChild } from "config/inteface";
+import { IChild } from "interface";
 
 interface ISiteWrapper extends IChild {
   className?: String;
